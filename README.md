@@ -1,10 +1,27 @@
-# Pomegranate Ecosystem 🍎
+# Salad Buah (Fruit Salad ERP) 🍎🍊🍇
 
 **The Modular ERP. You bring the frontend, we bring the APIs.**
 
-Stop forcing your business into a monolithic CMS. Pomegranate provides the backend services (Auth, Inventory, CMS). Want a React dashboard? Go ahead. Prefer Vue? Sure. Our default "Head" (Pome) is just an example built with Bun + HTMX.
+Stop forcing your business into a monolithic CMS. Salad Buah provides the backend services (Auth, Inventory, CMS). Want a React dashboard? Go ahead. Prefer Vue? Sure. Our default "Head" (Pome) is just an example built with Bun + HTMX.
 
 > "Don't like our frontend? Replace it. The APIs are open."
+
+---
+
+## What's in the Salad?
+
+Every service is named after a fruit. Pick what you need:
+
+| Fruit | Service | Function |
+| :--- | :--- | :--- |
+| **Mangosteen** 🥭 | Identity Provider | Auth for ALL users |
+| **Granate** 🍎 | CMS & Content | SEO, Landing Pages |
+| **Salak** 🐍 | Inventory | Stock management |
+| **Pome** 🍊 | Reference Frontend | Example UI (Bun+HTMX) |
+| **Pomelo** 🍊 | Ecommerce | Online store (Planned) |
+| **Mango** 🥭 | HR App | Employee management (Planned) |
+| **Lemon** 🍋 | Accounting | Finance & tax (Planned) |
+| **Berry** 🍇 | CRM | Customer relations (Planned) |
 
 ---
 
@@ -95,12 +112,13 @@ We built **Pome** (Bun + Elysia + HTMX) to show you how easy it is to consume ou
 
 ## Why not Odoo?
 
-| Feature | Odoo | Pomegranate |
+| Feature | Odoo | **Salad Buah** |
 | :--- | :--- | :--- |
 | **Architecture** | Monolith (Force everything) | **Modular** (Pick what you need) |
 | **Frontend** | jQuery/Owl (Legacy) | **BYOF** (Bring Your Own Frontend) |
 | **Resource** | 2GB RAM (Heavy) | **80MB Total** (Light) |
 | **Customization** | Python Inheritance | **API-First** (Any language) |
+| **Naming** | Just "Apps" | **Fruit Names** (Fun & Memorable) |
 
 ---
 
@@ -113,4 +131,4 @@ We built **Pome** (Bun + Elysia + HTMX) to show you how easy it is to consume ou
 
 ---
 
-**Pomegranate Ecosystem** — *Don't like our UI? Build your own.*
+**Salad Buah** — *Pick the fruits you need. Skip the rest.*
