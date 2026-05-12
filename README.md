@@ -1,116 +1,123 @@
-# Salad Buah (Pomegranate Ecosystem)
+# Pomegranate Ecosystem 🍎
 
-Lightweight ERP ecosystem inspired by fruit names. Built for small-to-medium businesses that want Odoo-like functionality without the bloat.
+**The "Order What You Need" ERP.**
 
-**Philosophy:** Modular microservices, each doing one thing well. Runs on affordable VPS (starting 85k IDR = 2 vCPU, 2GB RAM).
+Odoo tries to be everything for everyone. We don't. Pomegranate is a modular ecosystem where you pick *only* the services your business needs. No bloat, no plugins, no $20/month "extra features" you never use.
+
+> "Why buy a whole pizza when you're only hungry for a slice?"
 
 ---
 
-## What We've Built (Already Running)
+## The Problem with "All-in-One" ERPs
 
-### 1. Mangosteen (Identity Provider)
-- **Tech:** Go + Fiber + SQLite
-- **Function:** Authentication & Authorization (IAM) for ALL services
-- **Status:** ✅ Production
+| The Odoo Way | The Pomegranate Way |
+| :--- | :--- |
+| **Monolithic:** Install everything, hide what you don't use. | **Modular:** Install *only* what you need. |
+| **Heavy:** Needs 2GB+ RAM just to load the dashboard. | **Light:** Runs on a $5 VPS (512MB RAM is enough). |
+| **Plugin Hell:** Need a feature? Buy a plugin. Conflict? Good luck. | **Native:** Features are built-in. No plugins. No conflicts. |
+| **Legacy Frontend:** jQuery/Owl. Feels like 2010. | **Modern:** HTMX + Alpine.js. Snappy, fast, clean. |
+| **One Language:** Python (for everything). | **Right Tool:** Rust (Speed), Go (Simplicity), Elixir (Concurrency). |
+
+---
+
+## What We've Built (The "Ala Carte" Menu)
+
+### 1. Mangosteen (Identity Core) 🥭
+*The gatekeeper. Handles users, roles, and auth for everything.*
+- **Need it?** Yes, if you have users.
+- **Tech:** Go (15MB RAM idle).
+- **Status:** ✅ **Ready**
 - **Repo:** https://github.com/wandyirawan/mangosteen
-- **Port:** 4000
-- **Key Feature:** JWKS endpoint for JWT verification (`/api/.well-known/jwks.json`)
 
-### 2. Granate (CMS & Content)
-- **Tech:** Rust + Axum + PostgreSQL
-- **Function:** Content Management System, SEO, Landing Pages, Product Details
-- **Status:** ✅ Production
+### 2. Granate (CMS & Content) 🍎
+*Your landing pages, SEO, and product details. Fast.*
+- **Need it?** Yes, if you have a public face.
+- **Tech:** Rust (8MB idle). Serves content at native speed.
+- **Status:** ✅ **Ready**
 - **Repo:** https://github.com/wandyirawan/granate
-- **Port:** 3000
-- **Key Feature:** Integrates with Mangosteen for auth, lightweight (8MB idle RAM)
 
-### 3. Pome (Frontend Head)
-- **Tech:** Bun + Elysia + HTMX + Alpine.js + Pico CSS
-- **Function:** Universal dashboard & storefront
-- **Status:** ✅ Production
+### 3. Pome (The Dashboard) 🍊
+*One frontend to rule them all. Storefront + Admin.*
+- **Need it?** Yes, you need a UI.
+- **Tech:** Bun + HTMX. No React bloat.
+- **Status:** ✅ **Ready**
 - **Repo:** https://github.com/wandyirawan/pome
-- **Port:** 4021
-- **Key Feature:** Lightweight interactive UI without React/Vue bloat
 
-### 4. Salak (Inventory Service)
-- **Tech:** Python + FastAPI + Granian (Rust server) + PostgreSQL
-- **Function:** Stock management with ACID compliance
-- **Status:** ✅ Production (Step 1-5 done)
+### 4. Salak (Inventory) 🐍
+*Stock management that never loses count. Audit-ready.*
+- **Need it?** Yes, if you have products.
+- **Tech:** Python + Granian (Rust server). DB Triggers for ACID.
+- **Status:** ✅ **Ready**
 - **Repo:** https://github.com/wandyirawan/salak
-- **Port:** 8000
-- **Key Feature:** Database trigger auto-updates `real_qty` from `delta_qty` (history)
 
 ---
 
-## Planned Milestones
+## What's Cooking? (The Roadmap)
 
-### Milestone 1: Ecommerce Service
-- **Tech:** Elixir + Phoenix
-- **Function:** Online storefront, cart, checkout, payment gateway integration
-- **Why Elixir:** Handles thousands of concurrent users (flash sales) without crashing
-- **Integration:** Calls Salak (inventory check), uses Mangosteen (auth)
+Don't order it if you don't need it.
+
+### 🛒 Ecommerce (Pomelo)
+*Online store for thousands of concurrent buyers.*
+- **Need it?** If you sell online.
+- **Tech:** Elixir + Phoenix (The concurrency king).
 - **Status:** 🔜 Planning
 
-### Milestone 2: HR Application
-- **Tech:** Go + Fiber (similar to Mangosteen)
-- **Function:** Employee management, leave requests, payroll, attendance
-- **Key Feature:** Uses Salak for company asset tracking
+### 👥 HR App
+*Manage your team, leaves, and payroll.*
+- **Need it?** If you have employees.
+- **Tech:** Go (Simple, fast, reliable).
 - **Status:** 🔜 Planning
 
-### Milestone 3: CRM Service
-- **Tech:** Go + Fiber
-- **Function:** Customer data, sales pipeline, lead management, follow-up tracking
-- **Integration:** Receives data from Ecommerce service
+### 📊 CRM
+*Track leads and sales pipelines.*
+- **Need it?** If you have a sales team.
+- **Tech:** Go.
 - **Status:** 🔜 Planning
 
-### Milestone 4: Accounting Service
-- **Tech:** Python + FastAPI + Granian
-- **Function:** Ledger, invoicing, tax calculation, financial reports
-- **Why Python:** Rich ecosystem for financial libraries
-- **Integration:** Reads from Salak (inventory valuation), Ecommerce (sales), HR (payroll)
+### 💰 Accounting
+*Ledger, taxes, and financial reports.*
+- **Need it?** If you want to stay legal.
+- **Tech:** Python (Rich finance libs).
 - **Status:** 🔜 Planning
 
 ---
 
-## Architecture Diagram
+## Architecture: Simple by Design
 
 ```
-[All Users] → Mangosteen (Auth/SSO)
-                    ↓
-        ┌───────────┬───────────┬───────────┐
-        ↓           ↓           ↓           ↓
-    Pome (UI)   Granate     Salak      [Future Services]
-    (Frontend)  (CMS)    (Inventory)  (Ecommerce, HR, CRM, etc.)
-                    ↓           ↓
-                [Public]   [Internal/External]
+[User] → Pome (UI) → [JWT from Mangosteen]
+                      ↓
+        ┌─────────────┼─────────────┐
+        ↓             ↓             ↓
+    Granate        Salak        [Future Services]
+    (Content)     (Stock)      (Only if you need 'em)
 ```
 
 ---
 
-## Design Principles
+## Why "Fruit Salad"?
 
-1. **Lightweight First:** Every service must run on 85k IDR VPS (2 vCPU, 2GB RAM)
-2. **Modular:** Each service is independent, can be deployed separately
-3. **No PHP:** Avoiding WordPress/WooCommerce bloat
-4. **Right Tool for Job:**
-   - Rust: Speed & safety (CMS)
-   - Go: Simple & fast (Auth, HR)
-   - Python: Data & finance (Inventory, Accounting)
-   - Elixir: Concurrency (Ecommerce)
-   - Bun: Fast frontend (UI)
+Because every fruit has its own taste (purpose).
+- **Mangosteen:** Hard shell, sweet inside (Security).
+- **Granate:** Hard seeds, juicy fruit (Content/Speed).
+- **Salak:** Snake skin, crisp inside (Data/Inventory).
+
+We don't force-feed you a banana if you wanted an apple.
 
 ---
 
-## Getting Started
+## Get Started (in 3 steps)
 
-Each service has its own repo with:
-- `README.md` (setup instructions)
-- `Makefile` (for `make dev` one-command startup)
-- Docker Compose (for database/dependencies)
-- Step-by-step commits (milestone tracking)
+1. **Clone the service you need.**
+   ```bash
+   git clone https://github.com/wandyirawan/salak.git
+   ```
+2. **Run it.**
+   ```bash
+   make dev
+   ```
+3. **Done.** Runs on port 8000.
 
 ---
 
-**Part of Pomegranate Ecosystem** 🍎
-
-"Ecommerce for small businesses that don't want WooCommerce's bloat. Runs on a $5 VPS, no plugins, no PHP."
+**Pomegranate Ecosystem** — *ERP for those who hate ERP bloat.*
