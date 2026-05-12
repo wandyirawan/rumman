@@ -18,7 +18,7 @@ Every service is named after a fruit. Pick what you need:
 | **Granate** 🍎 | CMS & Content | SEO, Landing Pages |
 | **Salak** 🐍 | Inventory | Stock management |
 | **Pome** 🍊 | Reference Frontend | Example UI (Bun+HTMX) |
-| **Pomelo** 🍊 | Ecommerce | Online store (Planned) |
+| **Kelapa** 🥥 | Ecommerce | Online store (Planned) |
 | **Mango** 🥭 | HR App | Employee management (Planned) |
 | **Lemon** 🍋 | Accounting | Finance & tax (Planned) |
 | **Berry** 🍇 | CRM | Customer relations (Planned) |
@@ -34,7 +34,7 @@ Most businesses don't need a CMS. They need **Users** and **Stock**.
 | **Login & Users** | **Mangosteen** (Go) | ✅ Ready |
 | **Stock & Inventory** | **Salak** (Python) | ✅ Ready |
 | **Content/SEO (Optional)** | Granate (Rust) | ✅ Ready |
-| **Online Store (Optional)** | Pomelo (Elixir) | 🔜 Planning |
+| **Online Store (Optional)** | Kelapa (Elixir) | 🔜 Planning |
 
 **TL;DR:** Run Mangosteen + Salak. You're good to go.
 
@@ -88,7 +88,7 @@ We built **Pome** (Bun + Elysia + HTMX) to show you how easy it is to consume ou
 
 ## Roadmap (The "Odoo" Features, but Modular)
 
-### 🛒 Ecommerce (Pomelo)
+### 🛒 Ecommerce (Kelapa)
 *Flash sales without crashing.*
 - **Tech:** Elixir + Phoenix (Concurrency King).
 - **Status:** 🔜 Planning
