@@ -42,6 +42,7 @@ Each service is independently deployable, owns its own database, and communicate
 | **Salak** | Python (FastAPI + Granian) | Product Catalog & Inventory | ✅ Ready |
 | **Granate** | Rust (Axum) | CMS, SEO, Object Storage (Minio) | ✅ Ready |
 | **Pome** | TypeScript (Bun + Elysia + HTMX) | Backoffice Dashboard | ✅ Ready |
+| **Duwet** | Rust (Ratatui) | Warehouse TUI Client | ✅ Ready |
 | **Kelapa** | Elixir (Phoenix + Elm) | E-commerce Storefront | 🔜 In Progress |
 
 ---
@@ -77,6 +78,7 @@ Each service is independently deployable, owns its own database, and communicate
 | Salak (Inventory) | [github.com/wandyirawan/salak](https://github.com/wandyirawan/salak) |
 | Granate (CMS) | [github.com/wandyirawan/granate](https://github.com/wandyirawan/granate) |
 | Pome (Backoffice) | [github.com/wandyirawan/pome](https://github.com/wandyirawan/pome) |
+| Duwet (Warehouse TUI) | [github.com/wandyirawan/duwet](https://github.com/wandyirawan/duwet) |
 | Kelapa (E-commerce) | [github.com/wandyirawan/kelapa](https://github.com/wandyirawan/kelapa) |
 
 ---
