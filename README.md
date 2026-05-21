@@ -1,134 +1,98 @@
-# Salad Buah (Fruit Salad ERP) 🍎🍊🍇
+# Rumman (رُمَّان) — Polyglot Modular Enterprise Platform
 
-**The Modular ERP. You bring the frontend, we bring the APIs.**
+**API-first, polyglot microservices. Pick only what you need.**
 
-Stop forcing your business into a monolithic CMS. Salad Buah provides the backend services (Auth, Inventory, CMS). Want a React dashboard? Go ahead. Prefer Vue? Sure. Our default "Head" (Pome) is just an example built with Bun + HTMX.
+Rumman is a modular enterprise platform built as independent polyglot services — each service owns its database, its language, and its domain. No monolith. No vendor lock-in. No forced frontend.
 
 > "Don't like our frontend? Replace it. The APIs are open."
 
----
-
-## What's in the Salad?
-
-Every service is named after a fruit. Pick what you need:
-
-| Fruit | Service | Function |
-| :--- | :--- | :--- |
-| **Mangosteen** 🥭 | Identity Provider | Auth for ALL users |
-| **Granate** 🍎 | CMS & Content | SEO, Landing Pages |
-| **Salak** 🐍 | Inventory | Stock management |
-| **Pome** 🍊 | Reference Frontend | Example UI (Bun+HTMX) |
-| **Kelapa** 🥥 | Ecommerce | Online store (Planned) |
-| **Mango** 🥭 | HR App | Employee management (Planned) |
-| **Lemon** 🍋 | Accounting | Finance & tax (Planned) |
-| **Berry** 🍇 | CRM | Customer relations (Planned) |
+Internally, services are named after fruits (hence "Pomegranate Ecosystem"). Externally: **Rumman**.
 
 ---
 
-## Minimum Stack (What you *actually* need)
+## Architecture
 
-Most businesses don't need a CMS. They need **Users** and **Stock**.
-
-| Need | Service | Status |
-| :--- | :--- | :--- |
-| **Login & Users** | **Mangosteen** (Go) | ✅ Ready |
-| **Stock & Inventory** | **Salak** (Python) | ✅ Ready |
-| **Content/SEO (Optional)** | Granate (Rust) | ✅ Ready |
-| **Online Store (Optional)** | Kelapa (Elixir) | 🔜 Planning |
-
-**TL;DR:** Run Mangosteen + Salak. You're good to go.
-
----
-
-## The "Bring Your Own Frontend" Philosophy
-
-### Pome (Our Example)
-We built **Pome** (Bun + Elysia + HTMX) to show you how easy it is to consume our APIs.
-- **Is it mandatory?** No.
-- **Can I fork it?** Yes, MIT License.
-- **Can I use React/Next.js?** **YES.**
-
-### How it works
 ```
-[Your Custom Frontend (React/Vue/Svelte)]
-          ↓ (JWT Token from Mangosteen)
-[Mangosteen (Auth)] -----> [Salak (Inventory)]
-                           [Granate (CMS)] <--- (Optional)
+┌─────────────────────────────────────────────────┐
+│              [Your Frontend]                     │
+│         React / Vue / Svelte / Mobile            │
+└────────────┬────────────┬────────────┬───────────┘
+             │            │            │
+      ┌──────▼──────┐ ┌──▼───┐ ┌──────▼──────┐
+      │ Mangosteen  │ │ Salak│ │   Granate   │
+      │ (Go/Fiber)  │ │(Py)  │ │ (Rust/Axum) │
+      │   Auth/IAM  │ │Inv.  │ │    CMS      │
+      └─────────────┘ └──────┘ └─────────────┘
+      ┌─────────────┐ ┌──────┐
+      │   Kelapa    │ │ Pome │
+      │(Elixir/Phoen│ │(Bun) │
+      │  E-commerce │ │BO UI │
+      └─────────────┘ └──────┘
 ```
 
----
-
-## What We've Built (The Backend)
-
-### 1. Mangosteen (Identity Provider) 🥭
-*The Gatekeeper. Handles Auth for everything.*
-- **Tech:** Go + Fiber (15MB RAM idle).
-- **Repo:** https://github.com/wandyirawan/mangosteen
-- **Why:** Lightweight Identity Provider. No bloat.
-
-### 2. Salak (Inventory) 🐍
-*Audit-ready stock management.*
-- **Tech:** Python + Granian (Rust Server).
-- **Repo:** https://github.com/wandyirawan/salak
-- **Why:** ACID-compliant stock updates via Postgres Triggers.
-
-### 3. Granate (CMS & Content) 🍎
-*Landing pages, SEO, Product Details.*
-- **Tech:** Rust + Axum (8MB RAM idle).
-- **Repo:** https://github.com/wandyirawan/granate
-- **Why:** Speed. If you don't need content, don't run it.
-
-### 4. Pome (Reference Frontend) 🍊
-*The example client. Built with Bun + HTMX.*
-- **Tech:** Bun + Elysia + HTMX + Alpine.js.
-- **Repo:** https://github.com/wandyirawan/pome
-- **Why:** To prove how simple it is to talk to our APIs.
+Each service is independently deployable, owns its own database, and communicates via REST APIs authenticated through Mangosteen (universal IAM).
 
 ---
 
-## Roadmap (The "Odoo" Features, but Modular)
+## Services
 
-### 🛒 Ecommerce (Kelapa)
-*Flash sales without crashing.*
-- **Tech:** Elixir + Phoenix (Concurrency King).
-- **Status:** 🔜 Planning
-
-### 👥 HR App
-*Manage your team.*
-- **Tech:** Go + Fiber.
-- **Status:** 🔜 Planning
-
-### 📊 CRM
-*Sales pipelines.*
-- **Tech:** Go + Fiber.
-- **Status:** 🔜 Planning
-
-### 💰 Accounting
-*Ledger & Taxes.*
-- **Tech:** Python + Granian.
-- **Status:** 🔜 Planning
+| Service | Language | Domain | Status |
+| :--- | :--- | :--- | :--- |
+| **Mangosteen** | Go (Fiber) | Authentication & IAM | ✅ Ready |
+| **Salak** | Python (FastAPI + Granian) | Product Catalog & Inventory | ✅ Ready |
+| **Granate** | Rust (Axum) | CMS, SEO, Object Storage (Minio) | ✅ Ready |
+| **Pome** | TypeScript (Bun + Elysia + HTMX) | Backoffice Dashboard | ✅ Ready |
+| **Kelapa** | Elixir (Phoenix + Elm) | E-commerce Storefront | 🔜 In Progress |
 
 ---
 
-## Why not Odoo?
+## Technical Highlights
 
-| Feature | Odoo | **Salad Buah** |
-| :--- | :--- | :--- |
-| **Architecture** | Monolith (Force everything) | **Modular** (Pick what you need) |
-| **Frontend** | jQuery/Owl (Legacy) | **BYOF** (Bring Your Own Frontend) |
-| **Resource** | 2GB RAM (Heavy) | **80MB Total** (Light) |
-| **Customization** | Python Inheritance | **API-First** (Any language) |
-| **Naming** | Just "Apps" | **Fruit Names** (Fun & Memorable) |
-
----
-
-## Get Started (The Minimal Way)
-
-1. **Clone Auth:** `git clone https://github.com/wandyirawan/mangosteen.git`
-2. **Clone Inventory:** `git clone https://github.com/wandyirawan/salak.git`
-3. **Run:** `make dev` on both.
-4. **Build your own Frontend** (or use Pome as a starter).
+- **Universal IAM** — Single JWT-based auth across all services (Mangosteen)
+- **ACID Inventory** — Postgres triggers for stock consistency, sync-first design
+- **Full-Text Search** — PostgreSQL ILIKE + GIN trigram indexes (pg_trgm)
+- **Zero ORM** — Raw SQL with migration-based schema management
+- **Zero-Warning Rust** — Granate compiles clean with strict lints
+- **Lightweight** — Go services idle at ~15MB RAM, Rust at ~8MB
 
 ---
 
-**Salad Buah** — *Pick the fruits you need. Skip the rest.*
+## Design Philosophy
+
+**Sync over async.** Data consistency before performance theater.
+
+**Raw SQL over ORM.** No magic queries. No N+1 surprises.
+
+**API-first.** Every service exposes REST APIs. Build your own frontend — ours (Pome) is just a reference implementation.
+
+**Modular, not monolithic.** Run only what you need. Minimum stack: Mangosteen + Salak = auth + inventory.
+
+---
+
+## Repositories
+
+| Service | Repository |
+| :--- | :--- |
+| Mangosteen (Auth) | [github.com/wandyirawan/mangosteen](https://github.com/wandyirawan/mangosteen) |
+| Salak (Inventory) | [github.com/wandyirawan/salak](https://github.com/wandyirawan/salak) |
+| Granate (CMS) | [github.com/wandyirawan/granate](https://github.com/wandyirawan/granate) |
+| Pome (Backoffice) | [github.com/wandyirawan/pome](https://github.com/wandyirawan/pome) |
+| Kelapa (E-commerce) | [github.com/wandyirawan/kelapa](https://github.com/wandyirawan/kelapa) |
+
+---
+
+## Quick Start
+
+```bash
+# Minimum viable stack: auth + inventory
+git clone https://github.com/wandyirawan/mangosteen.git
+git clone https://github.com/wandyirawan/salak.git
+cd mangosteen && make dev &
+cd salak && make dev &
+# Build your own frontend, or use Pome as reference
+git clone https://github.com/wandyirawan/pome.git
+```
+
+---
+
+**Rumman** — *رُمَّان. The fruit. The platform. Pick what you need.*
