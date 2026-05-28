@@ -1,16 +1,16 @@
 # Rumman Roadmap
 
-## Phase 0: Pricing Foundation ✅ COMPLETE
+## Phase 0: Pricing Foundation ✅
 | ID | Task | Service | Status |
 |----|------|---------|--------|
 | P0-1 | COGS endpoint `GET /products/{id}/cogs` | Salak | ✅ |
 | P0-2 | Invoice lifecycle + COGS validation | Orange | ✅ |
 | P0-3 | system_settings table + tax seed + API | Lime | ✅ |
 
-## Phase 1: Sales Completeness ⬜
+## Phase 1: Sales Completeness 🚧
 | ID | Task | Service | Status |
 |----|------|---------|--------|
-| P1-1 | Promo / flash sale table + logic | Orange | ⬜ |
+| P1-1 | Promo / flash sale table + logic | Orange | ✅ |
 | P1-2 | allow_below_cost override flow | Orange | ⬜ |
 | P1-3 | Kupon / diskon stacking | Orange | ⬜ |
 
