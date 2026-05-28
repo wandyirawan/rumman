@@ -11,7 +11,7 @@
 | ID | Task | Service | Status |
 |----|------|---------|--------|
 | P1-1 | Promo / flash sale table + logic | Orange | ✅ |
-| P1-2 | allow_below_cost override flow | Orange | ⬜ |
+| P1-2 | allow_below_cost override flow | Orange | ✅ |
 | P1-3 | Kupon / diskon stacking | Orange | ⬜ |
 
 ## Phase 2: Product & Content ⬜
